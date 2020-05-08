@@ -146,6 +146,7 @@ app.use(function(req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
