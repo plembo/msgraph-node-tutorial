@@ -90,6 +90,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var authRouter = require('./routes/auth');
+var calendarRouter = require('./routes/calendar');
 var app = express();
 
 // Session middleware
