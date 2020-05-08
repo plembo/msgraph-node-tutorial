@@ -37,6 +37,17 @@ async function signInComplete(iss, sub, profile, accessToken, refreshToken, para
     return done(new Error("No OID found in user profile."));
   }
 
+  try{
+    const user = await graph.getUserDetails(accessToken);
+
+    if (user) {
+      // Add properties to profile
+      profile['email'] = user.mail ? user.mail : user.userPrincipalName;
+    }
+  } catch (err) {
+    return done(err);
+  }
+
   // Save the profile and tokens in user storage
   users[profile.oid] = { profile, accessToken };
   return done(null, users[profile.oid]);
