@@ -118,6 +118,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function(req, res, next) {
+  // Set the authenticated user in the
+  // template locals
+  if (req.user) {
+    res.locals.user = req.user.profile;
+  }
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
