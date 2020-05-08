@@ -125,6 +125,12 @@ app.use(function(req, res, next) {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+var hbs = require('hbs');
+var moment = require('moment');
+// Helper to format date/time sent by Graph
+hbs.registerHelper('eventDateTime', function(dateTime){
+  return moment(dateTime).format('M/D/YY h:mm A');
+});
 
 app.use(logger('dev'));
 app.use(express.json());
