@@ -19,22 +19,28 @@ router.get('/',
       try {
         accessToken = await tokens.getAccessToken(req);
       } catch (err) {
-        res.json(err);
+        req.flash('error_msg', {
+          message: 'Could not get access token. Try signing out and signing in again.',
+          debug: JSON.stringify(err)
+        });
       }
 
       if (accessToken && accessToken.length > 0) {
         try {
           // Get the events
           var events = await graph.getEvents(accessToken);
-
-          res.json(events.value);
+          params.events = events.value;
         } catch (err) {
-          res.json(err);
+          req.flash('error_msg', {
+            message: 'Could not fetch events',
+            debug: JSON.stringify(err)
+          });
         }
-      }
-      else {
+      } else {
         req.flash('error_msg', 'Could not get an access token');
       }
+
+      res.render('calendar', params);
     }
   }
 );
