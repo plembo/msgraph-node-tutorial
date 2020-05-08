@@ -1,4 +1,4 @@
-# Build Node.js Express apps for Microsoft Graph
+# Microsoft Graph Tutorial for Node.js
 This repo follows my building of a sample application to display Outlook calendar data retrieved from the Microsoft Graph. The Microsoft tutorial doc provides detailed explanations for each step of the build:
 
 https://docs.microsoft.com/en-us/graph/tutorials/node
