@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var session = require('express-session');
 var flash = require('connect-flash');
 var createError = require('http-errors');
